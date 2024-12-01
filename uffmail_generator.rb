@@ -4,21 +4,35 @@ require_relative 'uffmail_type3'
 require_relative 'uffmail_type4'
 require_relative 'uffmail_type5'
 
-class UffmailGenerator
+module UffmailGenerator
     def self.generate_uffmail(student_name, uffmail_type)
-      #uffmail = ""
-      case uffmail_type
-      when 1
-        uffmail = UffmailType1.generate_uffmail(student_name)
-      when 2
-        uffmail = UffmailType2.generate_uffmail(student_name)
-      when 3
-        uffmail = UffmailType3.generate_uffmail(student_name)
-      when 4
-        uffmail = UffmailType4.generate_uffmail(student_name)
-      else
-        uffmail = UffmailType5.generate_uffmail(student_name)
-      end
+      uffmail = generate_uffmail_option(student_name, uffmail_type)
       return uffmail
+    end
+
+    private
+
+    def self.generate_uffmail_option(student_name, uffmail_type)
+      student_name = student_name.downcase
+      student_name  =student_name.split(' ')
+
+      first_name = student_name[0]
+      middle_name = student_name[1]
+      last_name = student_name[2]
+
+      first_letter_first_name = student_name[0][0]
+      first_letter_middle_name = student_name[1][0]
+      first_letter_second_name = student_name[2][0]
+
+      options = [
+        "#{first_name}_#{middle_name}@id.uff.br",
+        "#{first_name}#{first_letter_middle_name}#{first_letter_second_name}@id.uff.br",
+        "#{first_name}#{last_name}@id.uff.br",
+        "#{first_letter_first_name}#{last_name}@id.uff.br",
+        "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
+      ]
+
+      return options[uffmail_type-1]
+
     end
 end
