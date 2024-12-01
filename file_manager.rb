@@ -1,21 +1,21 @@
 require 'csv'
 
 class FileManager
-    attr_accessor :csvData 
+    attr_accessor :csv_data
     
-    def initialize(csvFile)
-        readData(csvFile)
+    def initialize(csv_file)
+        read_data(csv_file)
     end
 
-    def readData(csvFile)
-        @csvData = table = CSV.parse(File.read(csvFile), headers: true)
+    def read_data(csv_file)
+        @csv_data  = CSV.parse(File.read(csv_file), headers: true)
     end
 
-    def showData() # tirar dps
-        for line in @csvData
+    def show_data # tirar dps
+        for line in @csv_data
             (0..5).each do |j|
                 print line[j]
-                if(j != 5)
+                if j != 5
                     print " - "
                 end
             end
@@ -23,27 +23,15 @@ class FileManager
         end
     end
 
-    def searchByAdmission(requiredAdmission)
-        currentLine = 0
-        admissionsArray = @csvData.by_col[1]
-        for admission in admissionsArray
-            if (admission.to_s == requiredAdmission)
-                return @csvData.by_row[currentLine]
+    def search_by_admission(required_admission)
+        current_line = 0
+        admissions_array = @csv_data.by_col[1]
+        for admission in admissions_array
+            if admission.to_s == required_admission
+                return @csv_data.by_row[current_line]
             end 
-            currentLine += 1
-
+            current_line += 1
         end
-        return nil
+        nil
     end
-
 end
-
-# Apagar depois
-
-=begin
-fileManager.showData
-puts fileManager.csvData[1][1]
-puts fileManager.csvData.by_col[0]
-puts fileManager.csvData[1][0] Nicolas, na linha 1 e coluna 0
-fileManager.showData
-=end 

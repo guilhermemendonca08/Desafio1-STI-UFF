@@ -1,9 +1,3 @@
-require_relative 'uffmail_type1'
-require_relative 'uffmail_type2'
-require_relative 'uffmail_type3'
-require_relative 'uffmail_type4'
-require_relative 'uffmail_type5'
-
 module UffmailGenerator
     def self.generate_uffmail(student_name, uffmail_type)
       uffmail = generate_uffmail_option(student_name, uffmail_type)
@@ -32,7 +26,7 @@ module UffmailGenerator
         "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
       ]
 
+      # O email do tipo n está na posição n-1 de options
       return options[uffmail_type-1]
-
     end
 end

@@ -1,5 +1,4 @@
 require_relative 'uffmail_generator'
-require_relative 'student'
 
 module UffmailManager
 
@@ -7,17 +6,17 @@ module UffmailManager
     uffmail_type = validate_email_type(student)
     uffmail = UffmailGenerator.generate_uffmail(student.name, uffmail_type)
     student.uffmail = uffmail
-    sendAlert(student.uffmail)
-    sendSMS(student.telephone)
+    send_alert(student.uffmail)
+    send_sms(student.telephone)
   end
 
   private
 
-  def self.sendAlert(uffmail)
+  def self.send_alert(uffmail)
     puts "A criação de seu e-mail (#{uffmail}) será feita nos próximos minutos."
   end
 
-  def self.sendSMS(telephone)
+  def self.send_sms(telephone)
     puts "Um SMS foi enviado para #{telephone} com a sua senha de acesso."
   end
 
