@@ -1,13 +1,15 @@
 require_relative 'uffmail_generator'
+require_relative 'file_manager'
 
 module UffmailManager
 
-  def self.create_new_uffmail(student)
+  def self.create_new_uffmail(student, file_manager)
     if validate_email_creation(student)
       uffmail_type = validate_email_type(student)
       uffmail = UffmailGenerator.generate_uffmail(student.name, uffmail_type)
       student.uffmail = uffmail
       send_alert(student.uffmail)
+      file_manager.update_uffmail(student.admission, student.uffmail)
       send_sms(student.telephone)
     end
   end
