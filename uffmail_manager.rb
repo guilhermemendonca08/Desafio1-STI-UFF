@@ -49,18 +49,17 @@ module UffmailManager
   end
 
   def self.show_options(student)
-
-    option_1 = UffmailGenerator.generate_uffmail(student.name, 1)
-    option_2 = UffmailGenerator.generate_uffmail(student.name, 2)
-    option_3 = UffmailGenerator.generate_uffmail(student.name, 3)
-    option_4 = UffmailGenerator.generate_uffmail(student.name, 4)
-    option_5 = UffmailGenerator.generate_uffmail(student.name, 5)
+    options = [
+      UffmailGenerator.generate_uffmail(student.name, 1),
+      UffmailGenerator.generate_uffmail(student.name, 2),
+      UffmailGenerator.generate_uffmail(student.name, 3),
+      UffmailGenerator.generate_uffmail(student.name, 4),
+      UffmailGenerator.generate_uffmail(student.name, 5)
+    ]
 
     puts "#{student.name}, por favor escolha uma das opções abaixo para o seu UFFMail"
-    puts "1 - #{option_1}\n"+
-    "2 - #{option_2}\n"+
-    "3 - #{option_3}\n"+
-    "4 - #{option_4}\n"+
-    "5 - #{option_5}"
+    (0..options.length - 1).each do |i|
+      puts "#{i+1} - #{options[i]}"
+    end
   end
 end

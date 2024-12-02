@@ -26,4 +26,4 @@ student = Student.new(
 
 UffmailManager.create_new_uffmail(student)
 
-puts "O uffmail de #{student.name} é: #{student.uffmail}" if student.uffmail
+# puts "O uffmail de #{student.name} é: #{student.uffmail}" if student.uffmail
