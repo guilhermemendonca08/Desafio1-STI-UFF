@@ -11,7 +11,7 @@ class FileManager
         @csv_data  = CSV.parse(File.read(csv_file), headers: true)
     end
 
-    def show_data # tirar dps
+    def show_data
         for line in @csv_data
             (0..5).each do |j|
                 print line[j]

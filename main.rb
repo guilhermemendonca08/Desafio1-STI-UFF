@@ -24,16 +24,6 @@ student = Student.new(
     status: student_data[5],
     )
 
-# puts "Olá, #{student.name}, matrícula #{student.admission}"
+UffmailManager.create_new_uffmail(student)
 
-if !student.uffmail && student.status == 'Ativo'
-    UffmailManager.create_new_uffmail(student)
-    #puts "O uffmail de #{student.name} é: #{student.uffmail}"
-
-elsif student.uffmail
-    puts 'Esse estudante já tem uffmail. Proibido criar outro.'
-
-else
-    # Estudante sem uffmail e não ativo (no caso, inativo)
-    puts 'Usuário inativo não pode criar uffmail.'
-end
+puts "O uffmail de #{student.name} é: #{student.uffmail}" if student.uffmail
