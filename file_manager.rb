@@ -12,9 +12,9 @@ class FileManager
     end
 
     def show_data
-        for line in @csv_data
+        @csv_data.each do |row|
             (0..5).each do |j|
-                print line[j]
+                print row[j]
                 if j != 5
                     print " - "
                 end
@@ -24,13 +24,13 @@ class FileManager
     end
 
     def search_by_admission(required_admission)
-        current_line = 0
+        current_row = 0
         admissions_array = @csv_data.by_col[1]
-        for admission in admissions_array
+        admissions_array.each do |admission|
             if admission.to_s == required_admission
-                return @csv_data.by_row[current_line]
+                return @csv_data.by_row[current_row]
             end 
-            current_line += 1
+            current_row += 1
         end
         nil
     end
