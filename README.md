@@ -24,5 +24,5 @@
   <li><a href="https://stackoverflow.com/questions/151505/difference-between-a-class-and-a-module/151774#151774">Classes x Modules</a></li>
   <li><a href="https://dev.to/adamlombard/ruby-class-methods-vs-instance-methods-4aje">Class Methods x Instance Methods</a></li>
   <li><a href="https://www.tiny.cloud/blog/modular-programming-principle/">Modularity</a></li>
-  <li><a href="https://medium.com/clarityhub/low-coupling-high-cohesion-3610e35ac4a6">Low coupling, High Cohesion</a></li>
+  <li><a href="https://medium.com/clarityhub/low-coupling-high-cohesion-3610e35ac4a6">Low Coupling, High Cohesion</a></li>
 </ul>
