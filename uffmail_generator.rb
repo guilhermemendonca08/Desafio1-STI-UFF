@@ -2,7 +2,7 @@ module UffmailGenerator
 
     def self.generate_uffmail_options(student_name)
       student_name = student_name.downcase
-      student_name  =student_name.split(' ')
+      student_name = student_name.split(' ')
 
       first_name = student_name[0]
       middle_name = student_name[1]
@@ -20,6 +20,6 @@ module UffmailGenerator
         "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
       ]
 
-      return options
+      options
     end
 end

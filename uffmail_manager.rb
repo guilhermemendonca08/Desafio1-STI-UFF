@@ -35,7 +35,7 @@ module UffmailManager
   def self.select_email_type(student_name, options)
     show_options(student_name, options)
     uffmail_type = validate_email_type(student_name, options)
-    return uffmail_type
+    uffmail_type
   end
 
   def self.show_options(student_name, options)
@@ -55,7 +55,7 @@ module UffmailManager
       uffmail_type = gets.to_i
     end
 
-    return uffmail_type
+    uffmail_type
   end
 
   def self.send_alert(uffmail)
