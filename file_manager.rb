@@ -5,11 +5,8 @@ class FileManager
     
     def initialize(csv_file)
         @csv_file = csv_file
-        read_data
-    end
 
-    def read_data
-        @csv_data = CSV.parse(File.read(@csv_file), headers: true)
+        read_data
     end
 
     def show_data
@@ -30,6 +27,18 @@ class FileManager
         nil
     end
 
+    def update_uffmail(student_admission, student_uffmail)
+        student_row = search_by_admission(student_admission)
+        @csv_data[student_row]["uffmail"] = student_uffmail
+        update_csv_data
+    end
+
+    private
+
+    def read_data
+        @csv_data = CSV.parse(File.read(@csv_file), headers: true)
+    end
+
     def search_by_admission(required_admission)
         current_row = 0
         admissions_array = @csv_data.by_col[1]
@@ -41,14 +50,6 @@ class FileManager
         end
         -1
     end
-
-    def update_uffmail(student_admission, student_uffmail)
-        student_row = search_by_admission(student_admission)
-        @csv_data[student_row]["uffmail"] = student_uffmail
-        update_csv_data
-    end
-
-    private
 
     def update_csv_data
         headers = ["nome","matricula","telefone","email","uffmail","status"]

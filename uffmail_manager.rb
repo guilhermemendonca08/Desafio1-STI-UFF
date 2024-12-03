@@ -8,12 +8,13 @@ module UffmailManager
       # Gera opções de uffmail e depois escolhe uma delas
       options = UffmailGenerator.generate_uffmail_options(student.name)
       uffmail_type = select_email_type(student.name, options)
-
       uffmail = options[uffmail_type-1] # Opção n está na posição n-1
       student.uffmail = uffmail
 
       send_alert(student.uffmail)
+
       file_manager.update_uffmail(student.admission, student.uffmail)
+
       send_sms(student.telephone)
     end
   end
@@ -34,6 +35,7 @@ module UffmailManager
 
   def self.select_email_type(student_name, options)
     show_options(student_name, options)
+
     uffmail_type = validate_email_type(student_name, options)
     uffmail_type
   end
@@ -47,14 +49,14 @@ module UffmailManager
 
   def self.validate_email_type(student_name, options)
     uffmail_type = gets.to_i
-
     # Garantir tipo válido
     while uffmail_type < 1 || uffmail_type > 5
       puts "Tipo inválido para o email"
+
       show_options(student_name, options)
+
       uffmail_type = gets.to_i
     end
-
     uffmail_type
   end
 
