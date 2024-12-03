@@ -1,12 +1,6 @@
 module UffmailGenerator
-    def self.generate_uffmail(student_name, uffmail_type)
-      uffmail = generate_uffmail_option(student_name, uffmail_type)
-      return uffmail
-    end
 
-    private
-
-    def self.generate_uffmail_option(student_name, uffmail_type)
+    def self.generate_uffmail_options(student_name)
       student_name = student_name.downcase
       student_name  =student_name.split(' ')
 
@@ -26,7 +20,6 @@ module UffmailGenerator
         "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
       ]
 
-      # O email do tipo n está na posição n-1 de options
-      return options[uffmail_type-1]
+      return options
     end
 end

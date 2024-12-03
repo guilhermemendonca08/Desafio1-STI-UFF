@@ -5,9 +5,13 @@ module UffmailManager
 
   def self.create_new_uffmail(student, file_manager)
     if validate_email_creation(student)
-      uffmail_type = validate_email_type(student)
-      uffmail = UffmailGenerator.generate_uffmail(student.name, uffmail_type)
+      # Gera opções de uffmail e depois escolhe uma delas
+      options = UffmailGenerator.generate_uffmail_options(student.name)
+      uffmail_type = select_email_type(student.name, options)
+
+      uffmail = options[uffmail_type-1] # Opção n está na posição n-1
       student.uffmail = uffmail
+
       send_alert(student.uffmail)
       file_manager.update_uffmail(student.admission, student.uffmail)
       send_sms(student.telephone)
@@ -28,40 +32,37 @@ module UffmailManager
     false
   end
 
-  def self.send_alert(uffmail)
-    puts "A criação de seu e-mail (#{uffmail}) será feita nos próximos minutos."
+  def self.select_email_type(student_name, options)
+    show_options(student_name, options)
+    uffmail_type = validate_email_type(student_name, options)
+    return uffmail_type
   end
 
-  def self.send_sms(telephone)
-    puts "Um SMS foi enviado para #{telephone} com a sua senha de acesso."
+  def self.show_options(student_name, options)
+    puts "#{student_name}, por favor escolha uma das opções abaixo para o seu UFFMail"
+    (0..options.length - 1).each do |i|
+      puts "#{i+1} - #{options[i]}"
+    end
   end
 
-  def self.validate_email_type(student)
-    show_options(student)
+  def self.validate_email_type(student_name, options)
     uffmail_type = gets.to_i
 
     # Garantir tipo válido
     while uffmail_type < 1 || uffmail_type > 5
       puts "Tipo inválido para o email"
-      show_options(student)
+      show_options(student_name, options)
       uffmail_type = gets.to_i
     end
 
     return uffmail_type
   end
 
-  def self.show_options(student)
-    options = [
-      UffmailGenerator.generate_uffmail(student.name, 1),
-      UffmailGenerator.generate_uffmail(student.name, 2),
-      UffmailGenerator.generate_uffmail(student.name, 3),
-      UffmailGenerator.generate_uffmail(student.name, 4),
-      UffmailGenerator.generate_uffmail(student.name, 5)
-    ]
+  def self.send_alert(uffmail)
+    puts "A criação de seu e-mail (#{uffmail}) será feita nos próximos minutos."
+  end
 
-    puts "#{student.name}, por favor escolha uma das opções abaixo para o seu UFFMail"
-    (0..options.length - 1).each do |i|
-      puts "#{i+1} - #{options[i]}"
-    end
+  def self.send_sms(telephone)
+    puts "Um SMS foi enviado para #{telephone} com a sua senha de acesso."
   end
 end

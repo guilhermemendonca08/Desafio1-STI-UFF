@@ -9,7 +9,7 @@ class FileManager
     end
 
     def read_data
-        @csv_data  = CSV.parse(File.read(@csv_file), headers: true)
+        @csv_data = CSV.parse(File.read(@csv_file), headers: true)
     end
 
     def show_data
