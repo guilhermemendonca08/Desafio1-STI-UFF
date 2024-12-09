@@ -13,11 +13,11 @@ module UffmailGenerator
     first_letter_second_name = last_name[0]
 
     options = [
-    "#{first_name}_#{middle_name}@id.uff.br",
-    "#{first_name}#{first_letter_middle_name}#{first_letter_second_name}@id.uff.br",
-    "#{first_name}#{last_name}@id.uff.br",
-    "#{first_letter_first_name}#{last_name}@id.uff.br",
-    "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
+      "#{first_name}_#{middle_name}@id.uff.br",
+      "#{first_name}#{first_letter_middle_name}#{first_letter_second_name}@id.uff.br",
+      "#{first_name}#{last_name}@id.uff.br",
+      "#{first_letter_first_name}#{last_name}@id.uff.br",
+      "#{first_letter_first_name}#{middle_name}#{last_name}@id.uff.br"
     ]
 
     options
